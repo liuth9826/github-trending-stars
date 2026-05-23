@@ -18,11 +18,11 @@
     },
     {
       "id": "feat-003",
-      "name": "赛博朋克风格 UI",
-      "description": "暗色主题、渐变色彩、动画效果、霓虹光晕等视觉设计",
+      "name": "天空蓝清新风格 UI",
+      "description": "天蓝渐变、现代简洁、清新明亮的视觉设计，使用 Outfit + Fira Code 字体",
       "dependencies": ["feat-001"],
       "status": "done",
-      "evidence": "已实现，index.html 中包含完整的 CSS 样式"
+      "evidence": "已更新，index.html 采用天空蓝主题配色"
     },
     {
       "id": "feat-004",

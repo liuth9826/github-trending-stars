@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI 风格方案预览 - 精选 10 种设计</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Source+Code+Pro:wght@400;500&family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;700&family=Fira+Code:wght@400;500&family=Quicksand:wght@400;600;700&family=Cascadia+Code:wght@400;600&family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Merriweather:wght@400;700&family=Roboto+Mono:wght@400;500&family=VT323&family=Share+Tech+Mono&family=Archivo+Black&family=Space+Mono:wght@400;700&family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 2.5rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+        }
+
+        .style-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .style-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .style-header {
+            padding: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-area {
+            height: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ========== 方案 A: 极简白 ========== */
+        .style-a .style-header {
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .preview-a {
+            background: #fff;
+            padding: 24px;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .preview-a .header { text-align: center; margin-bottom: 24px; }
+        .preview-a h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: -1px;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .preview-a .subtitle {
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-family: 'Source Code Pro', monospace;
+        }
+        .preview-a .repo-card {
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+        .preview-a .repo-card:hover {
+            border-color: #000;
+            transform: translateX(4px);
+        }
+        .preview-a .repo-name {
+            font-weight: 700;
+            color: #000;
+            font-size: 0.95rem;
+        }
+        .preview-a .repo-desc {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 4px;
+        }
+        .preview-a .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: #999;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        /* ========== 方案 B: 自然绿 ========== */
+        .style-b .style-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #fff;
+            font-family: 'Nunito', sans-serif;
+        }
+        .preview-b {
+            background: linear-gradient(180deg, #f0fdf4 0%, #fff 100%);
+            padding: 24px;
+            font-family: 'Nunito', sans-serif;
+        }
+        .preview-b .header { text-align: center; margin-bottom: 24px; }
+        .preview-b h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #065f46;
+            font-family: 'Nunito', sans-serif;
+        }
+        .preview-b .subtitle {
+            color: #10b981;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .preview-b .repo-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+            border: 1px solid #d1fae5;
+            transition: all 0.3s ease;
+        }
+        .preview-b .repo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+        }
+        .preview-b .repo-name {
+            font-weight: 700;
+            color: #065f46;
+        }
+        .preview-b .repo-desc {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        .preview-b .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: #10b981;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ========== 方案 C: 天空蓝 ========== */
+        .style-c .style-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+        }
+        .preview-c {
+            background: linear-gradient(180deg, #eff6ff 0%, #fff 50%, #f8fafc 100%);
+            padding: 24px;
+            font-family: 'Outfit', sans-serif;
+        }
+        .preview-c .header { text-align: center; margin-bottom: 24px; }
+        .preview-c h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1e40af;
+            font-family: 'Outfit', sans-serif;
+        }
+        .preview-c .subtitle {
+            color: #3b82f6;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-family: 'Fira Code', monospace;
+        }
+        .preview-c .repo-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+            border: 1px solid #dbeafe;
+            transition: all 0.2s ease;
+        }
+        .preview-c .repo-card:hover {
+            box-shadow: 0 8px 25px -5px rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+        .preview-c .repo-name {
+            font-weight: 600;
+            color: #1e40af;
+        }
+        .preview-c .repo-desc {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 4px;
+        }
+        .preview-c .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: #3b82f6;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* ========== 方案 D: 奶油暖 ========== */
+        .style-d .style-header {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            color: #fff;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .preview-d {
+            background: linear-gradient(180deg, #fffbeb 0%, #fff 100%);
+            padding: 24px;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .preview-d .header { text-align: center; margin-bottom: 24px; }
+        .preview-d h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #92400e;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .preview-d .subtitle {
+            color: #d97706;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-family: 'Cascadia Code', monospace;
+        }
+        .preview-d .repo-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
+            border: 1px solid #fde68a;
+            transition: all 0.3s ease;
+        }
+        .preview-d .repo-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
+        }
+        .preview-d .repo-name {
+            font-weight: 700;
+            color: #92400e;
+        }
+        .preview-d .repo-desc {
+            font-size: 0.8rem;
+            color: #78716c;
+            margin-top: 4px;
+        }
+        .preview-d .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: #f59e0b;
+            font-family: 'Cascadia Code', monospace;
+        }
+
+        /* ========== 方案 E: 暗夜紫 ========== */
+        .style-e .style-header {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .preview-e {
+            background: linear-gradient(180deg, #1e1b4b 0%, #312e81 100%);
+            padding: 24px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .preview-e .header { text-align: center; margin-bottom: 24px; }
+        .preview-e h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c084fc 0%, #e879f9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .preview-e .subtitle {
+            color: #a855f7;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        .preview-e .repo-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            transition: all 0.3s ease;
+        }
+        .preview-e .repo-card:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+        }
+        .preview-e .repo-name {
+            font-weight: 700;
+            color: #e9d5ff;
+        }
+        .preview-e .repo-desc {
+            font-size: 0.8rem;
+            color: #c4b5fd;
+            margin-top: 4px;
+        }
+        .preview-e .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: #a855f7;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* ========== 方案 F: 纸艺风 ========== */
+        .style-f .style-header {
+            background: linear-gradient(135deg, #78716c 0%, #a8a29e 100%);
+            color: #fff;
+            font-family: 'Merriweather', serif;
+        }
+        .preview-f {
+            background: linear-gradient(180deg, #fafaf9 0%, #f5f5f4 100%);
+            padding: 24px;
+            font-family: 'Merriweather', serif;
+        }
+        .preview-f .header { text-align: center; margin-bottom: 24px; }
+        .preview-f h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #44403c;
+            font-family: 'Merriweather', serif;
+        }
+        .preview-f .subtitle {
+            color: #78716c;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .preview-f .repo-card {
+            background: #fff;
+            border-radius: 4px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 
+                0 1px 1px rgba(0,0,0,0.05),
+                0 2px 2px rgba(0,0,0,0.05),
+                0 4px 4px rgba(0,0,0,0.05),
+                0 8px 8px rgba(0,0,0,0.05);
+            border: 1px solid #e7e5e4;
+            transition: all 0.2s ease;
+        }
+        .preview-f .repo-card:hover {
+            box-shadow: 
+                0 2px 2px rgba(0,0,0,0.05),
+                0 4px 4px rgba(0,0,0,0.05),
+                0 8px 8px rgba(0,0,0,0.05),
+                0 16px 16px rgba(0,0,0,0.05);
+        }
+        .preview-f .repo-name {
+            font-weight: 700;
+            color: #44403c;
+        }
+        .preview-f .repo-desc {
+            font-size: 0.8rem;
+            color: #78716c;
+            margin-top: 4px;
+        }
+        .preview-f .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: #a8a29e;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* ========== 方案 G: 玻璃拟态 ========== */
+        .style-g .style-header {
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+            backdrop-filter: blur(20px);
+            color: #fff;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .preview-g {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 24px;
+            position: relative;
+        }
+        .preview-g::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="40" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="60" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.5;
+        }
+        .preview-g .header { 
+            text-align: center; 
+            margin-bottom: 24px; 
+            position: relative;
+            z-index: 1;
+        }
+        .preview-g h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .preview-g .subtitle {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-family: 'SF Mono', monospace;
+        }
+        .preview-g .repo-card {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        .preview-g .repo-card:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+        .preview-g .repo-name {
+            font-weight: 600;
+            color: #fff;
+        }
+        .preview-g .repo-desc {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            margin-top: 4px;
+        }
+        .preview-g .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.9);
+            font-family: 'SF Mono', monospace;
+        }
+
+        /* ========== 方案 H: 复古终端 ========== */
+        .style-h .style-header {
+            background: #0f0f0f;
+            color: #ffb000;
+            font-family: 'VT323', monospace;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #ffb000;
+        }
+        .preview-h {
+            background: #0a0a0a;
+            padding: 24px;
+            font-family: 'VT323', monospace;
+            position: relative;
+        }
+        .preview-h::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0,0,0,0.15),
+                rgba(0,0,0,0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+        }
+        .preview-h .header { 
+            text-align: center; 
+            margin-bottom: 24px; 
+            position: relative;
+            z-index: 1;
+        }
+        .preview-h h2 {
+            font-size: 2rem;
+            color: #ffb000;
+            text-shadow: 0 0 10px rgba(255, 176, 0, 0.5);
+            font-family: 'VT323', monospace;
+        }
+        .preview-h .subtitle {
+            color: #cc8c00;
+            font-size: 1rem;
+            margin-top: 8px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .preview-h .repo-card {
+            background: rgba(255, 176, 0, 0.05);
+            border: 1px solid #ffb000;
+            border-radius: 0;
+            padding: 12px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.2s ease;
+        }
+        .preview-h .repo-card:hover {
+            background: rgba(255, 176, 0, 0.1);
+            box-shadow: 0 0 20px rgba(255, 176, 0, 0.3);
+        }
+        .preview-h .repo-name {
+            font-weight: 400;
+            color: #ffb000;
+            font-size: 1.1rem;
+        }
+        .preview-h .repo-desc {
+            font-size: 0.9rem;
+            color: #cc8c00;
+            margin-top: 4px;
+        }
+        .preview-h .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #ffb000;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* ========== 方案 I: 新粗野主义 ========== */
+        .style-i .style-header {
+            background: #ff006e;
+            color: #000;
+            font-family: 'Archivo Black', sans-serif;
+            border-bottom: 4px solid #000;
+        }
+        .preview-i {
+            background: #fff;
+            padding: 24px;
+            font-family: 'Archivo Black', sans-serif;
+        }
+        .preview-i .header { text-align: center; margin-bottom: 24px; }
+        .preview-i h2 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Archivo Black', sans-serif;
+        }
+        .preview-i .subtitle {
+            color: #ff006e;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-family: 'Space Mono', monospace;
+        }
+        .preview-i .repo-card {
+            background: #fff;
+            border: 3px solid #000;
+            border-radius: 0;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 4px 4px 0 #000;
+            transition: all 0.2s ease;
+        }
+        .preview-i .repo-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #000;
+        }
+        .preview-i .repo-name {
+            font-weight: 400;
+            color: #000;
+            text-transform: uppercase;
+        }
+        .preview-i .repo-desc {
+            font-size: 0.8rem;
+            color: #333;
+            margin-top: 4px;
+            font-family: 'Space Mono', monospace;
+        }
+        .preview-i .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: #ff006e;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* ========== 方案 J: 日式极简 ========== */
+        .style-j .style-header {
+            background: #fafaf9;
+            color: #292524;
+            font-family: 'Noto Serif JP', serif;
+            border-bottom: 1px solid #d6d3d1;
+        }
+        .preview-j {
+            background: #fafaf9;
+            padding: 24px;
+            font-family: 'Noto Serif JP', serif;
+        }
+        .preview-j .header { 
+            text-align: center; 
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #d6d3d1;
+        }
+        .preview-j h2 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #292524;
+            letter-spacing: 4px;
+            font-family: 'Noto Serif JP', serif;
+        }
+        .preview-j .subtitle {
+            color: #78716c;
+            font-size: 0.8rem;
+            margin-top: 12px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .preview-j .repo-card {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #e7e5e4;
+            border-radius: 0;
+            padding: 16px 0;
+            margin-bottom: 0;
+            transition: all 0.3s ease;
+        }
+        .preview-j .repo-card:hover {
+            background: #f5f5f4;
+            padding-left: 8px;
+        }
+        .preview-j .repo-name {
+            font-weight: 700;
+            color: #292524;
+            font-size: 0.9rem;
+        }
+        .preview-j .repo-desc {
+            font-size: 0.75rem;
+            color: #78716c;
+            margin-top: 6px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .preview-j .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
+            font-size: 0.7rem;
+            color: #a8a29e;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        /* ========== 当前风格 ========== */
+        .style-current .style-header {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .preview-current {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            padding: 24px;
+            font-family: 'Space Grotesk', sans-serif;
+            position: relative;
+        }
+        .preview-current::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+        .preview-current .header { 
+            text-align: center; 
+            margin-bottom: 24px; 
+            position: relative;
+            z-index: 1;
+        }
+        .preview-current h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff 0%, #a855f7 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .preview-current .subtitle {
+            color: #8b8b9e;
+            font-size: 0.85rem;
+            margin-top: 8px;
+        }
+        .preview-current .repo-card {
+            background: rgba(21, 21, 32, 0.8);
+            border: 1px solid #252535;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        .preview-current .repo-card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+        }
+        .preview-current .repo-name {
+            font-weight: 600;
+            color: #f0f0f5;
+        }
+        .preview-current .repo-desc {
+            font-size: 0.8rem;
+            color: #8b8b9e;
+            margin-top: 4px;
+        }
+        .preview-current .repo-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: #00d4ff;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .style-features {
+            padding: 16px 20px;
+            background: #f9fafb;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .style-features ul {
+            margin: 0;
+            padding-left: 16px;
+        }
+
+        .style-features li {
+            margin-bottom: 4px;
+        }
+
+        .vote-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .vote-section h2 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .vote-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .vote-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .vote-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .vote-a { background: #000; color: #fff; }
+        .vote-b { background: #10b981; color: #fff; }
+        .vote-c { background: #3b82f6; color: #fff; }
+        .vote-d { background: #f59e0b; color: #fff; }
+        .vote-e { background: #7c3aed; color: #fff; }
+        .vote-f { background: #78716c; color: #fff; }
+        .vote-g { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; }
+        .vote-h { background: #0a0a0a; color: #ffb000; border: 2px solid #ffb000; }
+        .vote-i { background: #ff006e; color: #000; }
+        .vote-j { background: #fafaf9; color: #292524; border: 2px solid #292524; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 UI 风格方案预览</h1>
+        <p class="subtitle">精选 10 种独特设计风格，每种都有鲜明的视觉特征和字体搭配</p>
+        
+        <div class="styles-grid">
+            <!-- 方案 A: 极简白 -->
+            <div class="style-card style-a">
+                <div class="style-header">
+                    <span>方案 A：极简白</span>
+                    <span class="badge" style="background: #000; color: #fff;">Minimal</span>
+                </div>
+                <div class="preview-area preview-a">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>DM Sans + Source Code Pro</li>
+                        <li>纯白背景，极致简约</li>
+                        <li>黑白配色，专业感强</li>
+                        <li>适合：专业工具、文档站</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 方案 B: 自然绿 -->
+            <div class="style-card style-b">
+                <div class="style-header">
+                    <span>方案 B：自然绿</span>
+                    <span class="badge" style="background: #fff; color: #10b981;">Organic</span>
+                </div>
+                <div class="preview-area preview-b">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>Nunito + JetBrains Mono</li>
+                        <li>薄荷绿渐变，清新自然</li>
+                        <li>圆角卡片，柔和友好</li>
+                        <li>适合：生态、健康类应用</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 方案 C: 天空蓝 -->
+            <div class="style-card style-c">
+                <div class="style-header">
+                    <span>方案 C：天空蓝</span>
+                    <span class="badge" style="background: #fff; color: #3b82f6;">Fresh</span>
+                </div>
+                <div class="preview-area preview-c">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>Outfit + Fira Code</li>
+                        <li>天蓝渐变，开阔清新</li>
+                        <li>现代简洁，科技感保留</li>
+                        <li>适合：开发者工具、SaaS</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 方案 D: 奶油暖 -->
+            <div class="style-card style-d">
+                <div class="style-header">
+                    <span>方案 D：奶油暖</span>
+                    <span class="badge" style="background: #fff; color: #f59e0b;">Warm</span>
+                </div>
+                <div class="preview-area preview-d">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>Quicksand + Cascadia Code</li>
+                        <li>暖黄奶油，温馨亲切</li>
+                        <li>大圆角设计，友好感强</li>
+                        <li>适合：社区、教育类应用</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 方案 E: 暗夜紫 -->
+            <div class="style-card style-e">
+                <div class="style-header">
+                    <span>方案 E：暗夜紫</span>
+                    <span class="badge" style="background: rgba(255,255,255,0.2); color: #fff;">Creative</span>
+                </div>
+                <div class="preview-area preview-e">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>Space Grotesk + IBM Plex Mono</li>
+                        <li>深紫渐变，霓虹点缀</li>
+                        <li>玻璃拟态，未来感强</li>
+                        <li>适合：创意开发者</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 方案 F: 纸艺风 -->
+            <div class="style-card style-f">
+                <div class="style-header">
+                    <span>方案 F：纸艺风</span>
+                    <span class="badge" style="background: #fff; color: #78716c;">Paper</span>
+                </div>
+                <div class="preview-area preview-f">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>Merriweather + Roboto Mono</li>
+                        <li>纸张纹理，阴影层次</li>
+                        <li>衬线字体，书卷气息</li>
+                        <li>适合：文档、博客</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 方案 G: 玻璃拟态 -->
+            <div class="style-card style-g">
+                <div class="style-header">
+                    <span>方案 G：玻璃拟态</span>
+                    <span class="badge" style="background: rgba(255,255,255,0.3); color: #fff;">Glass</span>
+                </div>
+                <div class="preview-area preview-g">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>SF Pro + SF Mono</li>
+                        <li>毛玻璃效果，模糊背景</li>
+                        <li>现代时尚，iOS 风格</li>
+                        <li>适合：现代应用</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 方案 H: 复古终端 -->
+            <div class="style-card style-h">
+                <div class="style-header">
+                    <span>方案 H：复古终端</span>
+                    <span class="badge" style="background: #0a0a0a; color: #ffb000; border: 1px solid #ffb000;">Retro</span>
+                </div>
+                <div class="preview-area preview-h">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>VT323 + Share Tech Mono</li>
+                        <li>琥珀屏、扫描线效果</li>
+                        <li>CRT 显示器质感</li>
+                        <li>适合：极客、黑客风格</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 方案 I: 新粗野主义 -->
+            <div class="style-card style-i">
+                <div class="style-header">
+                    <span>方案 I：新粗野主义</span>
+                    <span class="badge" style="background: #000; color: #ff006e;">Brutalist</span>
+                </div>
+                <div class="preview-area preview-i">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>Archivo Black + Space Mono</li>
+                        <li>粗边框、高对比</li>
+                        <li>硬阴影、无圆角</li>
+                        <li>适合：设计先锋</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 方案 J: 日式极简 -->
+            <div class="style-card style-j">
+                <div class="style-header">
+                    <span>方案 J：日式极简</span>
+                    <span class="badge" style="background: #292524; color: #fafaf9;">Zen</span>
+                </div>
+                <div class="preview-area preview-j">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>Noto Serif JP + Noto Sans JP</li>
+                        <li>米白、细线、大量留白</li>
+                        <li>东方美学，禅意</li>
+                        <li>适合：追求极致简洁</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 当前风格 -->
+            <div class="style-card style-current">
+                <div class="style-header">
+                    <span>当前风格：赛博朋克</span>
+                    <span class="badge" style="background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%); color: #fff;">Current</span>
+                </div>
+                <div class="preview-area preview-current">
+                    <div class="header">
+                        <h2>GitHub Trending</h2>
+                        <div class="subtitle">发现热门开源项目</div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">facebook/react</div>
+                        <div class="repo-desc">用于构建用户界面的 JavaScript 库</div>
+                        <div class="repo-meta">
+                            <span>⭐ 220k</span>
+                            <span>🔵 TypeScript</span>
+                            <span>📈 +500</span>
+                        </div>
+                    </div>
+                    <div class="repo-card">
+                        <div class="repo-name">vuejs/core</div>
+                        <div class="repo-desc">渐进式 JavaScript 框架</div>
+                        <div class="repo-meta">
+                            <span>⭐ 48k</span>
+                            <span>🟢 Vue</span>
+                            <span>📈 +200</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-features">
+                    <ul>
+                        <li><strong>字体：</strong>Space Grotesk + JetBrains Mono</li>
+                        <li>深色背景，霓虹渐变</li>
+                        <li>发光效果，网格动画</li>
+                        <li>适合：展示、娱乐</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="vote-section">
+            <h2>选择你喜欢的风格</h2>
+            <div class="vote-buttons">
+                <button class="vote-btn vote-a" onclick="selectStyle('A')">A - 极简白</button>
+                <button class="vote-btn vote-b" onclick="selectStyle('B')">B - 自然绿</button>
+                <button class="vote-btn vote-c" onclick="selectStyle('C')">C - 天空蓝</button>
+                <button class="vote-btn vote-d" onclick="selectStyle('D')">D - 奶油暖</button>
+                <button class="vote-btn vote-e" onclick="selectStyle('E')">E - 暗夜紫</button>
+                <button class="vote-btn vote-f" onclick="selectStyle('F')">F - 纸艺风</button>
+                <button class="vote-btn vote-g" onclick="selectStyle('G')">G - 玻璃拟态</button>
+                <button class="vote-btn vote-h" onclick="selectStyle('H')">H - 复古终端</button>
+                <button class="vote-btn vote-i" onclick="selectStyle('I')">I - 新粗野主义</button>
+                <button class="vote-btn vote-j" onclick="selectStyle('J')">J - 日式极简</button>
+            </div>
+            <p style="color: rgba(255,255,255,0.7); margin-top: 20px; font-size: 0.9rem;">
+                点击上方按钮选择，或直接在对话中告诉我（如"选 C"）
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function selectStyle(style) {
+            alert('你选择了方案 ' + style + '！\n\n请在对话中告诉我你的选择，我会帮你应用到主页面。');
+        }
+    </script>
+</body>
+</html>

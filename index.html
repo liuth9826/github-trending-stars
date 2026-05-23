@@ -6,27 +6,28 @@
     <title>GitHub Trending Stars - 开源项目排行榜</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-tertiary: #1a1a25;
-            --bg-card: #151520;
-            --text-primary: #f0f0f5;
-            --text-secondary: #8b8b9e;
-            --text-muted: #5a5a6e;
-            --accent-cyan: #00d4ff;
-            --accent-purple: #a855f7;
-            --accent-pink: #ec4899;
+            /* 天空蓝主题配色 */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #eff6ff;
+            --bg-tertiary: #dbeafe;
+            --bg-card: #ffffff;
+            --text-primary: #1e40af;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --accent-blue: #3b82f6;
+            --accent-light-blue: #60a5fa;
+            --accent-dark-blue: #1e40af;
             --accent-green: #10b981;
             --accent-orange: #f59e0b;
             --accent-red: #ef4444;
-            --border-color: #252535;
-            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #a855f7 50%, #ec4899 100%);
-            --gradient-glow: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(168, 85, 247, 0.15) 50%, rgba(236, 72, 153, 0.15) 100%);
-            --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.1);
+            --border-color: #dbeafe;
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            --gradient-glow: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(96, 165, 250, 0.1) 100%);
+            --shadow-glow: 0 4px 20px rgba(59, 130, 246, 0.15);
         }
 
         * {
@@ -36,15 +37,15 @@
         }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--bg-primary);
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 50%, #ffffff 100%);
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* 背景动画网格 */
-        .bg-grid {
+        /* 背景装饰 - 柔和的云朵效果 */
+        .bg-decoration {
             position: fixed;
             top: 0;
             left: 0;
@@ -52,50 +53,29 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.03;
-            background-image: 
-                linear-gradient(rgba(0, 212, 255, 0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 255, 0.5) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
+            overflow: hidden;
         }
 
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        /* 浮动光晕 */
-        .glow-orb {
-            position: fixed;
+        .bg-decoration::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
         }
 
-        .glow-orb-1 {
+        .bg-decoration::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
             width: 400px;
             height: 400px;
-            background: var(--accent-cyan);
-            top: -100px;
-            right: -100px;
-            animation: float 15s ease-in-out infinite;
-        }
-
-        .glow-orb-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--accent-purple);
-            bottom: -50px;
-            left: -50px;
-            animation: float 18s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, -30px) scale(1.1); }
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
         }
 
         /* 主容器 */
@@ -130,16 +110,13 @@
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
             letter-spacing: -1px;
         }
 
@@ -153,13 +130,13 @@
 
         .last-update {
             margin-top: 15px;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 0.85rem;
             color: var(--text-muted);
         }
 
         .last-update span {
-            color: var(--accent-cyan);
+            color: var(--accent-blue);
         }
 
         /* 统计卡片 */
@@ -195,7 +172,7 @@
 
         .stat-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(0, 212, 255, 0.3);
+            border-color: rgba(59, 130, 246, 0.3);
             box-shadow: var(--shadow-glow);
         }
 
@@ -214,12 +191,12 @@
         .stat-value {
             font-size: 2rem;
             font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
         }
 
-        .stat-card:nth-child(1) .stat-value { color: var(--accent-cyan); }
-        .stat-card:nth-child(2) .stat-value { color: var(--accent-purple); }
-        .stat-card:nth-child(3) .stat-value { color: var(--accent-pink); }
+        .stat-card:nth-child(1) .stat-value { color: var(--accent-blue); }
+        .stat-card:nth-child(2) .stat-value { color: var(--accent-light-blue); }
+        .stat-card:nth-child(3) .stat-value { color: var(--accent-dark-blue); }
         .stat-card:nth-child(4) .stat-value { color: var(--accent-green); }
 
         /* 控制面板 */
@@ -256,8 +233,8 @@
 
         .search-box input:focus {
             outline: none;
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         .search-box input::placeholder {
@@ -294,7 +271,7 @@
 
         .filter-select:focus {
             outline: none;
-            border-color: var(--accent-cyan);
+            border-color: var(--accent-blue);
         }
 
         .sort-buttons {
@@ -319,14 +296,14 @@
         }
 
         .sort-btn:hover {
-            border-color: var(--accent-cyan);
+            border-color: var(--accent-blue);
             color: var(--text-primary);
         }
 
         .sort-btn.active {
             background: var(--gradient-glow);
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
         }
 
         .refresh-btn {
@@ -347,7 +324,7 @@
 
         .refresh-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
         }
 
         .refresh-btn:disabled {
@@ -398,7 +375,7 @@
 
         .project-card:hover {
             transform: translateX(5px);
-            border-color: rgba(0, 212, 255, 0.3);
+            border-color: rgba(59, 130, 246, 0.3);
             box-shadow: var(--shadow-glow);
         }
 
@@ -414,7 +391,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 1.2rem;
             font-weight: 700;
             flex-shrink: 0;
@@ -458,7 +435,7 @@
         }
 
         .project-name:hover {
-            color: var(--accent-cyan);
+            color: var(--accent-blue);
         }
 
         .project-owner {
@@ -490,7 +467,7 @@
             gap: 6px;
             font-size: 0.9rem;
             color: var(--text-secondary);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
         }
 
         .meta-item.stars {
@@ -535,7 +512,7 @@
         }
 
         .stat-box-value {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Fira Code', monospace;
             font-size: 1.1rem;
             font-weight: 600;
         }
@@ -563,7 +540,7 @@
             width: 60px;
             height: 60px;
             border: 3px solid var(--border-color);
-            border-top-color: var(--accent-cyan);
+            border-top-color: var(--accent-blue);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
@@ -639,7 +616,7 @@
         }
 
         .page-btn:hover {
-            border-color: var(--accent-cyan);
+            border-color: var(--accent-blue);
             color: var(--text-primary);
         }
 
@@ -756,7 +733,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(10, 10, 15, 0.9);
+            background: rgba(30, 64, 175, 0.2);
             backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
@@ -847,9 +824,7 @@
     </style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="glow-orb glow-orb-1"></div>
-    <div class="glow-orb glow-orb-2"></div>
+    <div class="bg-decoration"></div>
 
     <div class="container">
         <header>
@@ -1116,6 +1091,7 @@
                     return Math.max(0, Math.round(dailyAvg * variation));
                 });
             },
+
 
             // 处理仓库数据
             processRepoData(repo, index) {
