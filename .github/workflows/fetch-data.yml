@@ -1,9 +1,9 @@
 name: Fetch GitHub Trending Data
 
 on:
-  # 每周一凌晨 0 点自动运行
+  # 每天凌晨 0 点自动运行
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 0 * * *'
   # 允许手动触发
   workflow_dispatch:
 
