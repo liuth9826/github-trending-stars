@@ -1,0 +1,54 @@
+name: Fetch GitHub Trending Data
+
+on:
+  # 每周一凌晨 0 点自动运行
+  schedule:
+    - cron: '0 0 * * 1'
+  # 允许手动触发
+  workflow_dispatch:
+
+jobs:
+  fetch-trending:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Fetch trending data
+      run: node scripts/fetch_trending.js
+      
+    - name: Check if data changed
+      id: check_changes
+      run: |
+        if git diff --quiet public/data/trending.json; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Commit and push changes
+      if: steps.check_changes.outputs.changed == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add public/data/trending.json
+        git commit -m "Update trending data: $(date +'%Y-%m-%d')"
+        git push
+        
+    - name: Notify on failure
+      if: failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: `❌ Trending data fetch failed: ${new Date().toISOString()}`,
+            body: `Workflow run: ${context.payload.repository.html_url}/actions/runs/${context.runId}`
+          })
