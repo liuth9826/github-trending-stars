@@ -53,9 +53,13 @@ function parseTrendingHTML(html) {
         const langMatch = repoHtml.match(/itemprop="programmingLanguage"[^>]*>([^<]*)</);
         const language = langMatch ? langMatch[1].trim() : '';
 
-        // 提取语言颜色
-        const langColorMatch = repoHtml.match(/background-color:\s*([^;]+)/);
-        const languageColor = langColorMatch ? langColorMatch[1].trim() : '';
+        // 提取语言颜色 - 只提取颜色值，不包含其他HTML
+        let languageColor = '';
+        const langColorSection = repoHtml.match(/<span[^>]*style="[^"]*background-color:\s*([^"]+)"[^>]*>/);
+        if (langColorSection) {
+            // 提取颜色值并清理
+            languageColor = langColorSection[1].replace(/[;"']/g, '').trim();
+        }
 
         // 提取 Stars 数
         const starsMatch = repoHtml.match(/\/stargazers"[^>]*>[\s\S]*?<\/svg>\s*([\d,]+)/);
