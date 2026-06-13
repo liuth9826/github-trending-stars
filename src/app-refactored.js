@@ -74,24 +74,21 @@
 
     // ==================== API 模块 ====================
     const API = {
-        async fetchFromPaths(paths) {
+        async fetchFromPaths(paths, bustCache = false) {
             for (const path of paths) {
                 try {
-                    const response = await fetch(path);
+                    const url = bustCache ? `${path}?t=${Date.now()}` : path;
+                    const response = await fetch(url);
                     if (response.ok) return await response.json();
                 } catch {}
             }
             return null;
         },
 
-        async getTrending() {
-            const data = await this.fetchFromPaths(Config.DATA_PATHS.trending);
+        async getTrending(force = false) {
+            const data = await this.fetchFromPaths(Config.DATA_PATHS.trending, force);
             if (data) return { data: data.data, timestamp: data.timestamp, source: 'static' };
-            
-            // 回退到本地服务器
-            const response = await fetch('/api/trending');
-            const result = await response.json();
-            return { data: result.data, timestamp: result.timestamp, source: 'server' };
+            throw new Error('无法加载数据');
         },
 
         async getSkills() {
@@ -545,10 +542,12 @@
             if (!force) UI.showLoading();
 
             try {
-                const result = await API.getTrending();
+                const result = await API.getTrending(force);
                 this.state.projects = result.data.map((r, i) => DataProcessor.processRepo(r, i));
                 this.state.filtered = [...this.state.projects];
-                UI.elements.lastUpdateTime.textContent = Utils.formatDate(new Date());
+                UI.elements.lastUpdateTime.textContent = result.timestamp
+                    ? Utils.formatDate(new Date(result.timestamp))
+                    : Utils.formatDate(new Date());
                 this.updateUI();
             } catch (err) {
                 console.error(err);
